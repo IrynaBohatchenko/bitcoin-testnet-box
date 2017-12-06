@@ -11,35 +11,38 @@ AMOUNT=
 ACCOUNT=
 
 start:
-	$(BITCOIND) $(B1) -daemon
-	$(BITCOIND) $(B2) -daemon
+	@$(BITCOIND) $(B1) -daemon
+	@$(BITCOIND) $(B2) -daemon
 
 start-gui:
-	$(BITCOINGUI) $(B1) &
-	$(BITCOINGUI) $(B2) &
+	@$(BITCOINGUI) $(B1) &
+	@$(BITCOINGUI) $(B2) &
 
 generate:
-	$(BITCOINCLI) $(B1) generate $(BLOCKS)
+	@$(BITCOINCLI) $(B1) generate $(BLOCKS)
 
 getinfo:
-	$(BITCOINCLI) $(B1) getinfo
-	$(BITCOINCLI) $(B2) getinfo
+	@echo "["
+	@$(BITCOINCLI) $(B1) getinfo
+	@echo ","
+	@$(BITCOINCLI) $(B2) getinfo
+	@echo "]"
 
 sendfrom1:
-	$(BITCOINCLI) $(B1) sendtoaddress $(ADDRESS) $(AMOUNT)
+	@$(BITCOINCLI) $(B1) sendtoaddress $(ADDRESS) $(AMOUNT)
 
 sendfrom2:
-	$(BITCOINCLI) $(B2) sendtoaddress $(ADDRESS) $(AMOUNT)
+	@$(BITCOINCLI) $(B2) sendtoaddress $(ADDRESS) $(AMOUNT)
 
 address1:
-	$(BITCOINCLI) $(B1) getnewaddress $(ACCOUNT)
+	@$(BITCOINCLI) $(B1) getnewaddress $(ACCOUNT)
 
 address2:
-	$(BITCOINCLI) $(B2) getnewaddress $(ACCOUNT)
+	@$(BITCOINCLI) $(B2) getnewaddress $(ACCOUNT)
 
 stop:
-	$(BITCOINCLI) $(B1) stop
-	$(BITCOINCLI) $(B2) stop
+	@$(BITCOINCLI) $(B1) stop
+	@$(BITCOINCLI) $(B2) stop
 
 clean:
 	find 1/regtest/* -not -name 'server.*' -delete

@@ -1,2 +1,6 @@
 .project
+1/regtest/*
+2/regtest/*
+!1/regtest/server.*
+!2/regtest/server.*
 
