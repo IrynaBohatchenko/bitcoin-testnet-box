@@ -3,5 +3,5 @@
 while true
 do
     make generate
-    sleep 30
+    sleep 20
 done
